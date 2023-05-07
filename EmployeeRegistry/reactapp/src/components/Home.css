@@ -1,0 +1,15 @@
+.home-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.greeting {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.description {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}

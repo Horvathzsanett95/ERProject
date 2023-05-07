@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "7BSaoyDL9FexHgD+YkAobxlT5p8xRaULTA1YpLuX62I=",
+  "Source": "EmployeeRegistry.BAL",
+  "BasePath": "_content/EmployeeRegistry.BAL",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
