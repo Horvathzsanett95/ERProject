@@ -1,2 +1,4 @@
 C:\Users\zshorvat\source\repos\EmployeeRegistry\reactapp\obj\Debug\EmployeeRegistryUI.esproj.SuggestedBindingRedirects.cache
 C:\Users\zshorvat\source\repos\EmployeeRegistry\reactapp\obj\Debug\EmployeeRegistryUI.esproj.CoreCompileInputs.cache
+C:\Users\zshorvat\source\repos\ERProject\EmployeeRegistry\reactapp\obj\Debug\EmployeeRegistryUI.esproj.SuggestedBindingRedirects.cache
+C:\Users\zshorvat\source\repos\ERProject\EmployeeRegistry\reactapp\obj\Debug\EmployeeRegistryUI.esproj.CoreCompileInputs.cache

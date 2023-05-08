@@ -15,28 +15,38 @@ namespace EmployeeRegistry.BAL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(Employee entity)
+        public async Task<IActionResult> AddAsync(Employee entity)
         {
-            // Implement the logic to add an employee entity
-            throw new NotImplementedException();
+            try
+            {
+                var addedEntity = await _employeeService.AddAsync(entity);
+
+                // Return a success response with the added entity
+                return Ok(addedEntity);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception and return an error response
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while adding the employee: {ex}");
+            }
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> DeleteAsync(long id)
         {
             // Implement the logic to delete an employee entity
             throw new NotImplementedException();
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(long id)
+        public async Task<IActionResult> GetByIdAsync(long id)
         {
             // Implement the logic to get an employee entity by ID
             throw new NotImplementedException();
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(Employee entity)
+        public async Task<IActionResult> UpdateAsync(Employee entity)
         {
             // Implement the logic to update an employee entity
             throw new NotImplementedException();
