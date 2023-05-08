@@ -1,4 +1,6 @@
-﻿using EmployeeRegistry.DAL;
+﻿using EmployeeRegistry.BAL.Services;
+using EmployeeRegistry.BAL.Services.Interfaces;
+using EmployeeRegistry.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,12 +26,17 @@ namespace EmployeeRegistry.BAL
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Employee Registry API", Version = "v1" });
             });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("EmployeeRegistryConnection")));
+
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IOrganizationalUnitService, OrganizationalUnitService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

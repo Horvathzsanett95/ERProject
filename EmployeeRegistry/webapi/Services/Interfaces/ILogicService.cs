@@ -6,7 +6,7 @@ namespace EmployeeRegistry.BAL.Services.Interfaces
 {
     public interface ILogicService
     {
-        Task<Entity> GetByIdAsync(long id);
+        Task<TEntity> GetByIdAsync(long id);
         Task<IQueryable<TEntity>> Query(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> AddAsync(TEntity entity);
         Task<TEntity> UpdateAsync(TEntity entity);

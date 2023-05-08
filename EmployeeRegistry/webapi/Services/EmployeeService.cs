@@ -1,35 +1,96 @@
 ﻿using EmployeeRegistry.BAL.Services.Interfaces;
+using EmployeeRegistry.DAL;
 using EmployeeRegistry.DAL.Models;
 using EmployeeRegistry.DAL.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace EmployeeRegistry.BAL.Services
 {
-    public class EmployeeService : ILogicService
+    public class EmployeeService : IEmployeeService
     {
-        public Task<TEntity> AddAsync(TEntity entity)
+        private readonly ApplicationDbContext _context;
+
+        public EmployeeService(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task DeleteAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Employees.Add((Employee)entity);
+                await _context.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while adding an Employee: {ex.Message}");
+                throw;
+            }
         }
 
-        public Task<Entity> GetByIdAsync(long id)
+        public async Task DeleteAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Employees.Remove((Employee)entity);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while deleting an Employee: {ex.Message}");
+                throw;
+            }
         }
 
-        public Task<IQueryable<TEntity>> Query(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> GetByIdAsync(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var employee = await _context.Employees.FindAsync(id);
+
+                if (employee == null)
+                {
+                    throw new InvalidOperationException($"Employee with id {id} not found");
+                }
+
+                return employee;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while getting an Employee by id: {ex.Message}");
+                throw;
+            }
         }
 
-        public Task<TEntity> UpdateAsync(TEntity entity)
+        public async Task<IQueryable<TEntity>> Query(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _context.Employees.Where(predicate);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while querying Employees: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            try
+            {
+                _context.Entry(entity).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return (Employee)entity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while updating an Employee: {ex.Message}");
+                throw;
+            }
         }
     }
 }
