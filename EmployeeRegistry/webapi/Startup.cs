@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Numerics;
+using AutoMapper;
+using EmployeeRegistry.DAL.Models;
+using EmployeeRegistry.DAL.Models.Interfaces;
 
 namespace EmployeeRegistry.BAL
 {
@@ -45,8 +48,8 @@ namespace EmployeeRegistry.BAL
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("EmployeeRegistryConnection")));
 
-            services.AddScoped<IEmployeeService, EmployeeService>();
-            services.AddScoped<IOrganizationalUnitService, OrganizationalUnitService>();
+            services.AddScoped<ILogicService<Employee>, EmployeeService>();
+            services.AddScoped<ILogicService<OrganizationalUnit>, OrganizationalUnitService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
