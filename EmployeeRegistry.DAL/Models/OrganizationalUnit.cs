@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeRegistry.DAL.Models
 {
-    public sealed class OrganizationalUnit : Entity
+    public class OrganizationalUnit : Entity
     {
         public string Acronym { get; set; }
     }

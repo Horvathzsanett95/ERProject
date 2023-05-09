@@ -1,6 +1,6 @@
 ﻿namespace EmployeeRegistry.DAL.Models
 {
-    public sealed class Employee : Entity
+    public class Employee : Entity
     {
         public string Position { get; set; }
         public string PhoneNumber { get; set; }
