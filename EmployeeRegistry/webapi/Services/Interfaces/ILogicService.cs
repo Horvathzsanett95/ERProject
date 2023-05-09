@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace EmployeeRegistry.BAL.Services.Interfaces
 {
-    public interface ILogicService
+    public interface ILogicService<TEntity>
     {
         Task<TEntity> GetByIdAsync(long id);
         Task<IQueryable<TEntity>> Query(Expression<Func<TEntity, bool>> predicate);

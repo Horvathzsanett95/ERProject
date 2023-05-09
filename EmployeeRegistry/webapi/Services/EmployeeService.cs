@@ -1,14 +1,13 @@
 ﻿using EmployeeRegistry.BAL.Services.Interfaces;
 using EmployeeRegistry.DAL;
 using EmployeeRegistry.DAL.Models;
-using EmployeeRegistry.DAL.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace EmployeeRegistry.BAL.Services
 {
-    public class EmployeeService : IEmployeeService
-    {
+    public class EmployeeService : ILogicService<Employee>
+    { 
         private readonly ApplicationDbContext _context;
 
         public EmployeeService(ApplicationDbContext context)
@@ -16,11 +15,11 @@ namespace EmployeeRegistry.BAL.Services
             _context = context;
         }
 
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public async Task<Employee> AddAsync(Employee entity)
         {
             try
             {
-                _context.Employees.Add((Employee)entity);
+                _context.Employees.Add(entity);
                 await _context.SaveChangesAsync();
                 return entity;
             }
@@ -31,7 +30,7 @@ namespace EmployeeRegistry.BAL.Services
             }
         }
 
-        public async Task DeleteAsync(TEntity entity)
+        public async Task DeleteAsync(Employee entity)
         {
             try
             {
@@ -45,7 +44,7 @@ namespace EmployeeRegistry.BAL.Services
             }
         }
 
-        public async Task<TEntity> GetByIdAsync(long id)
+        public async Task<Employee> GetByIdAsync(long id)
         {
             try
             {
@@ -65,11 +64,11 @@ namespace EmployeeRegistry.BAL.Services
             }
         }
 
-        public async Task<IQueryable<TEntity>> Query(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IQueryable<Employee>> Query(Expression<Func<Employee, bool>> predicate)
         {
             try
             {
-                return _context.Employees.Where(predicate);
+                return await Task.FromResult(_context.Employees.Where(predicate).AsQueryable());
             }
             catch (Exception ex)
             {
@@ -78,13 +77,13 @@ namespace EmployeeRegistry.BAL.Services
             }
         }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
+        public async Task<Employee> UpdateAsync(Employee entity)
         {
             try
             {
                 _context.Entry(entity).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return (Employee)entity;
+                return entity;
             }
             catch (Exception ex)
             {

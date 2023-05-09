@@ -3,11 +3,12 @@ using EmployeeRegistry.DAL;
 using EmployeeRegistry.DAL.Models;
 using EmployeeRegistry.DAL.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace EmployeeRegistry.BAL.Services
 {
-    public class OrganizationalUnitService : IOrganizationalUnitService
+    public class OrganizationalUnitService : ILogicService<OrganizationalUnit> 
     {
         private readonly ApplicationDbContext _context;
 
@@ -15,7 +16,7 @@ namespace EmployeeRegistry.BAL.Services
         {
             _context = context;
         }
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public async Task<OrganizationalUnit> AddAsync(OrganizationalUnit entity)
         {
             try
             {
@@ -30,7 +31,7 @@ namespace EmployeeRegistry.BAL.Services
             }
         }
 
-        public async Task DeleteAsync(TEntity entity)
+        public async Task DeleteAsync(OrganizationalUnit entity)
         {
             try
             {
@@ -44,18 +45,18 @@ namespace EmployeeRegistry.BAL.Services
             }
         }
 
-        public async Task<TEntity> GetByIdAsync(long id)
+        public async Task<OrganizationalUnit> GetByIdAsync(long id)
         {
             try
             {
-                var employee = await _context.OrganizationalUnits.FindAsync(id);
+                var organizationalUnit = await _context.OrganizationalUnits.FindAsync(id);
 
-                if (employee == null)
+                if (organizationalUnit == null)
                 {
                     throw new InvalidOperationException($"Employee with id {id} not found");
                 }
 
-                return employee;
+                return organizationalUnit;
             }
             catch (Exception ex)
             {
@@ -64,7 +65,7 @@ namespace EmployeeRegistry.BAL.Services
             }
         }
 
-        public async Task<IQueryable<TEntity>> Query(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IQueryable<OrganizationalUnit>> Query(Expression<Func<OrganizationalUnit, bool>> predicate)
         {
             try
             {
@@ -77,13 +78,13 @@ namespace EmployeeRegistry.BAL.Services
             }
         }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
+        public async Task<OrganizationalUnit> UpdateAsync(OrganizationalUnit entity)
         {
             try
             {
                 _context.Entry(entity).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return (OrganizationalUnit)entity;
+                return entity;
             }
             catch (Exception ex)
             {
