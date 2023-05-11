@@ -1,18 +1,9 @@
 ﻿using EmployeeRegistry.BAL.Services;
 using EmployeeRegistry.BAL.Services.Interfaces;
 using EmployeeRegistry.DAL;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Numerics;
-using AutoMapper;
 using EmployeeRegistry.DAL.Models;
-using EmployeeRegistry.DAL.Models.Interfaces;
 
 namespace EmployeeRegistry.BAL
 {
