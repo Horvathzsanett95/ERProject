@@ -1,26 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import './EmployeeGrid.css';
+import React, { useEffect } from 'react';
+import './Grid.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const EmployeeGrid = () => {
-    const [employees, setEmployees] = useState([]);
+const EmployeeGrid = ({ employees, fetchEmployees, onDeleteEmployee, onEditEmployee }) => {
 
     useEffect(() => {
-        const fetchEmployees = async () => {
-            try {
-                const response = await fetch('https://localhost:7178/api/EmployeeController');
-                console.log(response);
-                if (response.ok) {
-                    const data = await response.json();
-                    //console.log(data);
-                    setEmployees(data);
-                } else {
-                    throw new Error('Failed to fetch employees');
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
         fetchEmployees();
     }, []);
 
@@ -34,7 +19,8 @@ const EmployeeGrid = () => {
                         <th>Name</th>
                         <th>Position</th>
                         <th>Phone Number</th>
-                        <th>Organizational Unit</th>
+                            <th>Organizational Unit</th>
+                            <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +30,14 @@ const EmployeeGrid = () => {
                             <td>{employee.position}</td>
                             <td>{employee.phoneNumber}</td>
                             <td>{employee.organizationalUnit ? employee.organizationalUnit.name : "No org. unit added"}</td>
+                            <td>
+                                <button onClick={() => onEditEmployee(employee)}>
+                                    <FontAwesomeIcon icon={faEdit} />
+                                </button>
+                                <button onClick={() => onDeleteEmployee(employee.id)}>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import './EmployeeModal.css'
 
-const AddEmployeeModal = ({ isOpen, onClose, supervisors, organizationalUnits, onSubmit }) => {
+const EmployeeModal = ({ isOpen, onClose, supervisors, organizationalUnits, onSubmit, onEmployeeAdded, employeeToEdit }) => {
     const [formData, setFormData] = useState({
         name: '',
         active: true,
@@ -14,13 +14,43 @@ const AddEmployeeModal = ({ isOpen, onClose, supervisors, organizationalUnits, o
         organizationalUnitId: null,
     });
 
+    const [isEditMode, setIsEditMode] = useState(false);
+
+    useEffect(() => {
+        if (employeeToEdit) {
+            setFormData(employeeToEdit);
+            setIsEditMode(true);
+        } else {
+            setFormData({
+                name: "",
+                active: true,
+                position: "",
+                phoneNumber: "",
+                username: "",
+                password: "",
+                supervisor: null,
+                organizationalUnitId: null,
+            });
+            setIsEditMode(false);
+        }
+    }, [employeeToEdit]);
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        console.log(isEditMode);
+        onSubmit(formData, isEditMode)
+                .then(() => {
+                onEmployeeAdded(); 
+                onClose();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+        onClose();
     };
 
     return (
@@ -29,7 +59,7 @@ const AddEmployeeModal = ({ isOpen, onClose, supervisors, organizationalUnits, o
       onRequestClose={onClose}
       className="modal"
     >
-      <h2 className="modal-title">Add Employee</h2>
+            <h2 className="modal-title">{isEditMode ? "Edit Employee" : "Add Employee"}</h2>
 
       <form className="modal-form" onSubmit={handleSubmit}>
         <div className="form-group">
@@ -95,4 +125,4 @@ const AddEmployeeModal = ({ isOpen, onClose, supervisors, organizationalUnits, o
     );
 };
 
-export default AddEmployeeModal;
+export default EmployeeModal;

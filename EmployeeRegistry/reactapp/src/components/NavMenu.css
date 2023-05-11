@@ -1,0 +1,33 @@
+.nav-menu {
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+    .nav-menu ul {
+        display: flex;
+        justify-content: flex-end;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .nav-menu ul li {
+            margin-left: 10px;
+        }
+
+            .nav-menu ul li a {
+                color: #333;
+                text-decoration: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
+
+                .nav-menu ul li a:hover {
+                    background-color: #e6e6e6;
+                }
+
+                .nav-menu ul li a.active {
+                    background-color: #ddd;
+                    font-weight: bold;
+                    cursor: default;
+                }
