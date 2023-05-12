@@ -1,48 +1,87 @@
-﻿using EmployeeRegistry.BAL.Services.Interfaces;
+﻿using EmployeeRegistry.BAL.Services;
+using EmployeeRegistry.BAL.Services.Interfaces;
 using EmployeeRegistry.DAL.Models;
+using EmployeeRegistry.DAL.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq.Expressions;
 
 namespace EmployeeRegistry.BAL.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [Produces("application/json")]
+    [Route("api/OrganizationalUnitController")]
     public class OrganizationalUnitController : ControllerBase
     {
-        private readonly IOrganizationalUnitService _organizationalUnitService;
+        private readonly ILogicService<OrganizationalUnit> _organizationalUnitService;
 
-        public OrganizationalUnitController(IOrganizationalUnitService organizationalUnitService)
+        public OrganizationalUnitController(ILogicService<OrganizationalUnit> organizationalUnitService)
         {
             _organizationalUnitService = organizationalUnitService;
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(OrganizationalUnit), 200)]
-        public async Task<IActionResult> Add(OrganizationalUnit entity)
+        public async Task<IActionResult> AddAsync(OrganizationalUnit entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                TEntity addedEntity = await _organizationalUnitService.AddAsync(entity);
+
+                // Return a success response with the added entity
+                return Ok(addedEntity);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception and return an error response
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while adding the organizational unit: {ex}");
+            }
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(204)]
-        public async Task<IActionResult> Delete(long id)
+        public async Task<IActionResult> DeleteAsync([FromBody]long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                OrganizationalUnit entity = await _organizationalUnitService.GetByIdAsync(id);
+                await _organizationalUnitService.DeleteAsync(entity);
+
+                // Return a success response with the added entity
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception and return an error response
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while adding the employee: {ex}");
+            }
         }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(OrganizationalUnit), 200)]
-        public async Task<IActionResult> GetById(long id)
+        [HttpGet]
+        public async Task<IActionResult> GetActiveOrganizationalUnitAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                IQueryable<TEntity> organizationalUnitsQuery = await _organizationalUnitService.Query(x => x.Active == true);
+                return Ok(organizationalUnitsQuery);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception and return an error response
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while querying the organizational units: {ex}");
+            }
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(OrganizationalUnit), 200)]
-        public async Task<IActionResult> Update(OrganizationalUnit entity)
+        public async Task<IActionResult> UpdateAsync(OrganizationalUnit entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                TEntity updatedEntity = await _organizationalUnitService.UpdateAsync(entity);
+
+                // Return a success response with the added entity
+                return Ok(updatedEntity);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception and return an error response
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while updating the employee: {ex}");
+            }
         }
     }
 }

@@ -154,3 +154,4 @@ C:\Users\zshorvat\source\repos\ERProject\EmployeeRegistry\webapi\obj\Debug\net7.
 C:\Users\zshorvat\source\repos\ERProject\EmployeeRegistry\webapi\obj\Debug\net7.0\EmployeeRegistry.BAL.pdb
 C:\Users\zshorvat\source\repos\ERProject\EmployeeRegistry\webapi\obj\Debug\net7.0\EmployeeRegistry.BAL.genruntimeconfig.cache
 C:\Users\zshorvat\source\repos\ERProject\EmployeeRegistry\webapi\obj\Debug\net7.0\ref\EmployeeRegistry.BAL.dll
+C:\Users\zshorvat\source\repos\ERProject\EmployeeRegistry\webapi\bin\Debug\net7.0\Newtonsoft.Json.dll

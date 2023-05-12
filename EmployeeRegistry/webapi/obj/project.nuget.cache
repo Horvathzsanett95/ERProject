@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "F+9xqI9OuKTAie3S5Koz6MCGFQ0mzFzsR+9Sofp2aOkHVz9pOyVJ7Svt5knKOS7TytbQCFeltC47S4D2MtHdjQ==",
+  "dgSpecHash": "v8JcUs5O2P8YTDCu0A5KCsKyuavmI+P6Q6wFaT9zQt7VIqJhbHZ7RARloezuTPNlmYdP8XujncNLgQ7j5Wzqew==",
   "success": true,
   "projectFilePath": "C:\\Users\\zshorvat\\source\\repos\\ERProject\\EmployeeRegistry\\webapi\\EmployeeRegistry.BAL.csproj",
   "expectedPackageFiles": [
@@ -44,6 +44,7 @@
     "C:\\Users\\zshorvat\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\zshorvat\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\zshorvat\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\zshorvat\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\zshorvat\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\zshorvat\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\zshorvat\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
