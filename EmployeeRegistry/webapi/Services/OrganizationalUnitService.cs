@@ -35,8 +35,13 @@ namespace EmployeeRegistry.BAL.Services
         {
             try
             {
-                _context.OrganizationalUnits.Remove((OrganizationalUnit)entity);
-                await _context.SaveChangesAsync();
+                OrganizationalUnit organizationalUnit = await _context.OrganizationalUnits.FindAsync(entity.Id);
+
+                if (organizationalUnit != null)
+                {
+                    organizationalUnit.Active = false;
+                    await _context.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {
@@ -69,7 +74,7 @@ namespace EmployeeRegistry.BAL.Services
         {
             try
             {
-                return _context.OrganizationalUnits.Where(predicate);
+                return await Task.FromResult(_context.OrganizationalUnits.Where(predicate).AsQueryable());
             }
             catch (Exception ex)
             {

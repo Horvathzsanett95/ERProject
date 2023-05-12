@@ -34,12 +34,17 @@ namespace EmployeeRegistry.BAL.Services
         {
             try
             {
-                _context.Employees.Remove((Employee)entity);
-                await _context.SaveChangesAsync();
+                Employee employee = await _context.Employees.FindAsync(entity.Id);
+
+                if (employee != null)
+                {
+                    employee.Active = false;
+                    await _context.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while deleting an Employee: {ex.Message}");
+                Console.WriteLine($"An error occurred while logically deleting an Employee: {ex.Message}");
                 throw;
             }
         }
