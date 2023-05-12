@@ -40,16 +40,20 @@ Follow these steps to install and run the Employee Registry application:
 
 The backend API provides the following endpoints:
 
-- `GET /api/EmployeeController`: Get a list of all employees.
-- `GET /api/EmployeeController/{id}`: Get an employee by ID.
-- `POST /api/EmployeeController`: Add a new employee.
-- `PUT /api/EmployeeController/{id}`: Update an existing employee.
-- `DELETE /api/EmployeeController/{id}`: Delete an employee by ID.
-- `GET /api/OrganizationalUnitController`: Get a list of all organizational units.
-- `GET /api/OrganizationalUnitController/{id}`: Get an organizational unit by ID.
-- `POST /api/OrganizationalUnitController`: Add a new organizational unit.
-- `PUT /api/OrganizationalUnitController/{id}`: Update an existing organizational unit.
-- `DELETE /api/OrganizationalUnitController/{id}`: Delete an organizational unit by ID.
+### EmployeeController
+
+- `POST /api/EmployeeController/AddAsync`: Add a new employee.
+- `DELETE /api/EmployeeController/DeleteAsync`: Delete an employee by ID.
+- `GET /api/EmployeeController/GetActiveEmployeesAsync`: Get a list of all active employees.
+- `PUT /api/EmployeeController/UpdateAsync`: Update an existing employee.
+
+### OrganizationalUnitController
+
+- `POST /api/OrganizationalUnitController/AddAsync`: Add a new organizational unit.
+- `DELETE /api/OrganizationalUnitController/DeleteAsync`: Delete an organizational unit by ID.
+- `GET /api/OrganizationalUnitController/GetActiveOrganizationalUnitAsync`: Get a list of all active organizational units.
+- `PUT /api/OrganizationalUnitController/UpdateAsync`: Update an existing organizational unit.
+
 
 ## Contributing
 
