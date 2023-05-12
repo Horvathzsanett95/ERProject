@@ -30,7 +30,7 @@ const OrganizationalUnitGrid = ({ organizationalUnits, fetchOrganizationalUnits,
                                     <button onClick={() => onEditOrganizationalUnit(organizationalUnit)}>
                                         <FontAwesomeIcon icon={faEdit} />
                                     </button>
-                                    <button onClick={() => onDeleteOrganizationalUnit(organizationalUnit)}>
+                                    <button onClick={() => onDeleteOrganizationalUnit(organizationalUnit.id)}>
                                         <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                 </td>

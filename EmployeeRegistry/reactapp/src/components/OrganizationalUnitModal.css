@@ -1,10 +1,9 @@
-.employee-modal {
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    max-width: 500px;
     margin: 0 auto;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.95);
@@ -18,15 +17,13 @@
     text-align: center;
 }
 
-.employee-modal-form {
-    display: grid;
+.modal-form {
+    display: flex;
+    flex-direction: column;
     grid-gap: 1rem;
 }
 
 .form-group {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 0.5rem;
     background-color: #f5f5f5;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -53,12 +50,12 @@
     }
 
 @media screen and (min-width: 768px) {
-    .employee-modal {
+    .modal {
         width: 60%;
-        max-width: 700px;
+        max-width: 350px;
     }
 
-    .employee-modal-form {
+    .modal-form {
         grid-template-columns: 1fr 1fr;
     }
 }

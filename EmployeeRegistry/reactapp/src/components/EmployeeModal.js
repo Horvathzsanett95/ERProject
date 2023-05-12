@@ -57,11 +57,11 @@ const EmployeeModal = ({ isOpen, onClose, supervisors, organizationalUnits, onSu
        <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
-      className="modal"
+            className="employee-modal"
     >
             <h2 className="modal-title">{isEditMode ? "Edit Employee" : "Add Employee"}</h2>
 
-      <form className="modal-form" onSubmit={handleSubmit}>
+      <form className="employee-modal-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />

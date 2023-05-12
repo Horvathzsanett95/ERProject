@@ -34,7 +34,7 @@ namespace EmployeeRegistry.BAL.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteAsync([FromBody]long id)
         {
             try
